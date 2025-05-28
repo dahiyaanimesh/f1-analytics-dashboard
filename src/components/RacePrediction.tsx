@@ -42,14 +42,26 @@ const RacePrediction: React.FC = () => {
     fetchRaces();
   }, [year]);
 
+  // Reset selected race when year changes and races are updated
+  useEffect(() => {
+    if (races.length > 0 && !races.find(race => race.round === selectedRace)) {
+      setSelectedRace(races[0].round);
+    }
+  }, [races, selectedRace]);
+
   const fetchRaces = async () => {
     try {
       const response = await axios.get(`http://localhost:5000/api/races?year=${year}`);
-      if (response.data.success) {
+      if (response.data.success && response.data.data.length > 0) {
         setRaces(response.data.data);
+      } else {
+        // Fallback for years without data
+        console.log(`No race data available for ${year}, using fallback`);
+        setRaces([]);
       }
     } catch (err) {
       console.error('Error fetching races:', err);
+      setRaces([]);
     }
   };
 
@@ -112,22 +124,27 @@ const RacePrediction: React.FC = () => {
               value={selectedRace}
               onChange={(e) => setSelectedRace(Number(e.target.value))}
               className="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-red-500"
+              disabled={races.length === 0}
             >
-              {races.map((race) => (
-                <option key={race.round} value={race.round}>
-                  Round {race.round}: {race.name}
-                </option>
-              ))}
+              {races.length > 0 ? (
+                races.map((race) => (
+                  <option key={race.round} value={race.round}>
+                    Round {race.round}: {race.name}
+                  </option>
+                ))
+              ) : (
+                <option value="">No races available for {year}</option>
+              )}
             </select>
           </div>
           
           <div className="flex items-end">
             <button
               onClick={fetchPredictions}
-              disabled={loading}
+              disabled={loading || races.length === 0}
               className="w-full bg-red-600 hover:bg-red-700 disabled:bg-gray-600 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200"
             >
-              {loading ? 'Predicting...' : 'Generate Predictions'}
+              {loading ? 'Predicting...' : races.length === 0 ? 'No Races Available' : 'Generate Predictions'}
             </button>
           </div>
         </div>

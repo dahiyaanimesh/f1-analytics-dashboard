@@ -134,11 +134,19 @@ const StrategyOptimization: React.FC = () => {
               onChange={(e) => setRound(Number(e.target.value))}
               className="f1-input w-full"
             >
-              {Array.from({ length: 24 }, (_, i) => i + 1).map(roundNum => (
-                <option key={roundNum} value={roundNum}>
-                  Round {roundNum}
-                </option>
-              ))}
+              {races.length > 0 ? (
+                races.map((race) => (
+                  <option key={race.round} value={race.round}>
+                    Round {race.round}: {race.name}
+                  </option>
+                ))
+              ) : (
+                Array.from({ length: 24 }, (_, i) => i + 1).map(roundNum => (
+                  <option key={roundNum} value={roundNum}>
+                    Round {roundNum}
+                  </option>
+                ))
+              )}
             </select>
           </div>
           <div>
@@ -171,6 +179,33 @@ const StrategyOptimization: React.FC = () => {
 
       {result && (
         <>
+          {/* Race Information */}
+          <div className="f1-card p-6">
+            <h3 className="text-lg font-semibold text-white mb-4">Race Information</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+              <div>
+                <span className="text-gray-400">Round:</span>
+                <p className="text-white font-medium">{round}</p>
+              </div>
+              <div>
+                <span className="text-gray-400">Race:</span>
+                <p className="text-white font-medium">
+                  {races.find(r => r.round === round)?.name || `Round ${round}`}
+                </p>
+              </div>
+              <div>
+                <span className="text-gray-400">Driver:</span>
+                <p className="text-white font-medium">
+                  {availableDrivers.find(d => d.code === driver)?.name || driver}
+                </p>
+              </div>
+              <div>
+                <span className="text-gray-400">Season:</span>
+                <p className="text-white font-medium">{year}</p>
+              </div>
+            </div>
+          </div>
+
           {/* Strategy Comparison */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="f1-card p-6">
