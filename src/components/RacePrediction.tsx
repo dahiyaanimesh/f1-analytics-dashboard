@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { YEARS } from '../constants/drivers';
 
@@ -38,18 +38,7 @@ const RacePrediction: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetchRaces();
-  }, [year]);
-
-  // Reset selected race when year changes and races are updated
-  useEffect(() => {
-    if (races.length > 0 && !races.find(race => race.round === selectedRace)) {
-      setSelectedRace(races[0].round);
-    }
-  }, [races, selectedRace]);
-
-  const fetchRaces = async () => {
+  const fetchRaces = useCallback(async () => {
     try {
       const response = await axios.get(`http://localhost:5000/api/races?year=${year}`);
       if (response.data.success && response.data.data.length > 0) {
@@ -63,7 +52,18 @@ const RacePrediction: React.FC = () => {
       console.error('Error fetching races:', err);
       setRaces([]);
     }
-  };
+  }, [year]);
+
+  useEffect(() => {
+    fetchRaces();
+  }, [fetchRaces]);
+
+  // Reset selected race when year changes and races are updated
+  useEffect(() => {
+    if (races.length > 0 && !races.find(race => race.round === selectedRace)) {
+      setSelectedRace(races[0].round);
+    }
+  }, [races, selectedRace]);
 
   const fetchPredictions = async () => {
     setLoading(true);

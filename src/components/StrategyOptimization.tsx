@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import { getAllDrivers, getDriversForYear, YEARS } from '../constants/drivers';
+import { getDriversForYear, YEARS } from '../constants/drivers';
 
 interface StrategyResult {
   optimal_strategy: {
@@ -57,11 +57,7 @@ const StrategyOptimization: React.FC = () => {
   }, [year, availableDrivers, driver]);
 
   // Fetch races when year changes
-  useEffect(() => {
-    fetchRaces();
-  }, [year]);
-
-  const fetchRaces = async () => {
+  const fetchRaces = useCallback(async () => {
     try {
       const response = await axios.get(`http://localhost:5000/api/races?year=${year}`);
       if (response.data.success) {
@@ -70,7 +66,11 @@ const StrategyOptimization: React.FC = () => {
     } catch (error) {
       console.error('Error fetching races:', error);
     }
-  };
+  }, [year]);
+
+  useEffect(() => {
+    fetchRaces();
+  }, [fetchRaces]);
 
   const optimizeStrategy = async () => {
     try {

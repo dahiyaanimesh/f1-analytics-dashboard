@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { getAllDrivers, getDriversForYear, YEARS, Driver } from '../constants/drivers';
+import { getDriversForYear, YEARS } from '../constants/drivers';
 
 interface DriverPerformance {
   overall_metrics: {
@@ -49,8 +49,6 @@ const DriverAnalytics: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('individual');
 
-  const drivers = getAllDrivers();
-  
   // Filter drivers for the selected year
   const availableDrivers = getDriversForYear(selectedYear);
   

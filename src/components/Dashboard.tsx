@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
 interface RaceData {
@@ -28,11 +28,7 @@ const Dashboard: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [selectedYear] = useState(2025);
 
-  useEffect(() => {
-    fetchDashboardData();
-  }, [selectedYear]);
-
-  const fetchDashboardData = async () => {
+  const fetchDashboardData = useCallback(async () => {
     try {
       setLoading(true);
       
@@ -52,7 +48,11 @@ const Dashboard: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedYear]);
+
+  useEffect(() => {
+    fetchDashboardData();
+  }, [fetchDashboardData]);
 
   if (loading) {
     return (
