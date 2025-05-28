@@ -239,6 +239,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Built with ❤️ for Formula 1 fans and data enthusiasts**
 
-[![GitHub stars](https://img.shields.io/github/stars/dahiyaanimesh/f1-analytics-dashboard?style=social)](https://github.com/yourusername/f1-analytics-dashboard/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/dahiyaanimesh/f1-analytics-dashboard?style=social)](https://github.com/yourusername/f1-analytics-dashboard/network/members)
-[![GitHub issues](https://img.shields.io/github/issues/dahiyaanimesh/f1-analytics-dashboard)](https://github.com/yourusername/f1-analytics-dashboard/issues) 
+[![GitHub stars](https://img.shields.io/github/stars/dahiyaanimesh/f1-analytics-dashboard?style=social)](https://github.com/dahiyaanimesh/f1-analytics-dashboard/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/dahiyaanimesh/f1-analytics-dashboard?style=social)](https://github.com/dahiyaanimesh/f1-analytics-dashboard/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/dahiyaanimesh/f1-analytics-dashboard)](https://github.com/dahiyaanimesh/f1-analytics-dashboard/issues) 
