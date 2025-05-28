@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { YEARS } from '../constants/drivers';
 
 interface PredictionData {
   winner_prediction: {
@@ -30,7 +31,7 @@ interface RaceOption {
 }
 
 const RacePrediction: React.FC = () => {
-  const [year, setYear] = useState(2023);
+  const [year, setYear] = useState(2025);
   const [selectedRace, setSelectedRace] = useState(1);
   const [predictionData, setPredictionData] = useState<PredictionData | null>(null);
   const [races, setRaces] = useState<RaceOption[]>([]);
@@ -99,9 +100,9 @@ const RacePrediction: React.FC = () => {
               onChange={(e) => setYear(Number(e.target.value))}
               className="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-red-500"
             >
-              <option value={2023}>2023</option>
-              <option value={2022}>2022</option>
-              <option value={2021}>2021</option>
+              {YEARS.map(year => (
+                <option key={year} value={year}>{year}</option>
+              ))}
             </select>
           </div>
           

@@ -26,7 +26,7 @@ const Dashboard: React.FC = () => {
   const [races, setRaces] = useState<RaceData[]>([]);
   const [standings, setStandings] = useState<StandingsData>({ drivers: [], constructors: [] });
   const [loading, setLoading] = useState(true);
-  const [selectedYear] = useState(2023);
+  const [selectedYear] = useState(2025);
 
   useEffect(() => {
     fetchDashboardData();

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { getAllDrivers, YEARS, Driver } from '../constants/drivers';
 
 interface DriverPerformance {
   overall_metrics: {
@@ -41,25 +42,14 @@ interface ComparisonData {
 
 const DriverAnalytics: React.FC = () => {
   const [selectedDriver, setSelectedDriver] = useState('VER');
-  const [selectedYear, setSelectedYear] = useState(2023);
+  const [selectedYear, setSelectedYear] = useState(2025);
   const [comparisonDrivers, setComparisonDrivers] = useState<string[]>(['VER', 'LEC']);
   const [driverData, setDriverData] = useState<DriverPerformance | null>(null);
   const [comparisonData, setComparisonData] = useState<ComparisonData | null>(null);
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('individual');
 
-  const drivers = [
-    { code: 'VER', name: 'Max Verstappen' },
-    { code: 'LEC', name: 'Charles Leclerc' },
-    { code: 'HAM', name: 'Lewis Hamilton' },
-    { code: 'RUS', name: 'George Russell' },
-    { code: 'NOR', name: 'Lando Norris' },
-    { code: 'PIA', name: 'Oscar Piastri' },
-    { code: 'SAI', name: 'Carlos Sainz' },
-    { code: 'PER', name: 'Sergio Perez' },
-    { code: 'ALO', name: 'Fernando Alonso' },
-    { code: 'STR', name: 'Lance Stroll' }
-  ];
+  const drivers = getAllDrivers();
 
   const analyzeDriver = async () => {
     try {
@@ -158,14 +148,15 @@ const DriverAnalytics: React.FC = () => {
               </div>
               <div>
                 <label className="block text-gray-400 text-sm mb-2">Season</label>
-                <input
-                  type="number"
+                <select
                   value={selectedYear}
                   onChange={(e) => setSelectedYear(Number(e.target.value))}
                   className="f1-input w-full"
-                  min="2018"
-                  max="2024"
-                />
+                >
+                  {YEARS.map(year => (
+                    <option key={year} value={year}>{year}</option>
+                  ))}
+                </select>
               </div>
               <div className="flex items-end">
                 <button
@@ -268,8 +259,8 @@ const DriverAnalytics: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <label className="block text-gray-400 text-sm mb-2">Drivers to Compare</label>
-                <div className="space-y-2">
-                  {drivers.slice(0, 6).map((driver) => (
+                <div className="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto">
+                  {drivers.slice(0, 20).map((driver) => (
                     <label key={driver.code} className="flex items-center space-x-2">
                       <input
                         type="checkbox"
@@ -283,21 +274,22 @@ const DriverAnalytics: React.FC = () => {
                         }}
                         className="rounded"
                       />
-                      <span className="text-white">{driver.name}</span>
+                      <span className="text-white text-sm">{driver.name}</span>
                     </label>
                   ))}
                 </div>
               </div>
               <div>
                 <label className="block text-gray-400 text-sm mb-2">Season</label>
-                <input
-                  type="number"
+                <select
                   value={selectedYear}
                   onChange={(e) => setSelectedYear(Number(e.target.value))}
                   className="f1-input w-full"
-                  min="2018"
-                  max="2024"
-                />
+                >
+                  {YEARS.map(year => (
+                    <option key={year} value={year}>{year}</option>
+                  ))}
+                </select>
               </div>
               <div className="flex items-end">
                 <button

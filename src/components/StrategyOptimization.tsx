@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { getAllDrivers, YEARS } from '../constants/drivers';
 
 interface StrategyResult {
   optimal_strategy: {
@@ -29,7 +30,7 @@ interface StrategyResult {
 }
 
 const StrategyOptimization: React.FC = () => {
-  const [year, setYear] = useState(2023);
+  const [year, setYear] = useState(2025);
   const [round, setRound] = useState(1);
   const [driver, setDriver] = useState('VER');
   const [loading, setLoading] = useState(false);
@@ -78,25 +79,31 @@ const StrategyOptimization: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div>
             <label className="block text-gray-400 text-sm mb-2">Year</label>
-            <input
-              type="number"
+            <select
               value={year}
               onChange={(e) => setYear(Number(e.target.value))}
               className="f1-input w-full"
-              min="2018"
-              max="2024"
-            />
+            >
+              {YEARS.map(year => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
           </div>
           <div>
             <label className="block text-gray-400 text-sm mb-2">Round</label>
-            <input
-              type="number"
+            <select
               value={round}
               onChange={(e) => setRound(Number(e.target.value))}
               className="f1-input w-full"
-              min="1"
-              max="24"
-            />
+            >
+              {Array.from({ length: 24 }, (_, i) => i + 1).map(roundNum => (
+                <option key={roundNum} value={roundNum}>
+                  Round {roundNum}
+                </option>
+              ))}
+            </select>
           </div>
           <div>
             <label className="block text-gray-400 text-sm mb-2">Driver</label>
@@ -105,14 +112,11 @@ const StrategyOptimization: React.FC = () => {
               onChange={(e) => setDriver(e.target.value)}
               className="f1-input w-full"
             >
-              <option value="VER">Max Verstappen (VER)</option>
-              <option value="LEC">Charles Leclerc (LEC)</option>
-              <option value="HAM">Lewis Hamilton (HAM)</option>
-              <option value="RUS">George Russell (RUS)</option>
-              <option value="NOR">Lando Norris (NOR)</option>
-              <option value="PIA">Oscar Piastri (PIA)</option>
-              <option value="SAI">Carlos Sainz (SAI)</option>
-              <option value="PER">Sergio Perez (PER)</option>
+              {getAllDrivers().map((driver) => (
+                <option key={driver.code} value={driver.code}>
+                  {driver.name} ({driver.code})
+                </option>
+              ))}
             </select>
           </div>
           <div className="flex items-end">

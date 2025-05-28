@@ -15,7 +15,7 @@ const Header: React.FC = () => {
         </div>
         <div className="flex items-center space-x-4">
           <div className="text-sm text-gray-400">
-            Season 2023 • Live Data
+            Season 2025 • Live Data
           </div>
           <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
         </div>
