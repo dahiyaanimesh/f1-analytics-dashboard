@@ -62,7 +62,7 @@ A comprehensive Formula 1 analytics platform that provides advanced race insight
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/f1-analytics-dashboard.git
+git clone <repository-url>
 cd f1-analytics-dashboard
 ```
 
@@ -235,16 +235,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Python Data Science**: Analytics libraries
 - **Tailwind CSS**: UI framework
 
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/yourusername/f1-analytics-dashboard/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/f1-analytics-dashboard/discussions)
-- **Email**: support@f1analytics.com
-
 ---
 
 **Built with ❤️ for Formula 1 fans and data enthusiasts**
 
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/f1-analytics-dashboard?style=social)](https://github.com/yourusername/f1-analytics-dashboard/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/yourusername/f1-analytics-dashboard?style=social)](https://github.com/yourusername/f1-analytics-dashboard/network/members)
-[![GitHub issues](https://img.shields.io/github/issues/yourusername/f1-analytics-dashboard)](https://github.com/yourusername/f1-analytics-dashboard/issues) 
+[![GitHub stars](https://img.shields.io/github/stars/dahiyaanimesh/f1-analytics-dashboard?style=social)](https://github.com/yourusername/f1-analytics-dashboard/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/dahiyaanimesh/f1-analytics-dashboard?style=social)](https://github.com/yourusername/f1-analytics-dashboard/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/dahiyaanimesh/f1-analytics-dashboard)](https://github.com/yourusername/f1-analytics-dashboard/issues) 
