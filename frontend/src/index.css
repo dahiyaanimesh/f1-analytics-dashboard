@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #0f1419;
+  color: #ffffff;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Custom F1 components */
+.f1-gradient {
+  background: linear-gradient(135deg, #e60012 0%, #ff1e30 100%);
+}
+
+.f1-card {
+  @apply bg-f1-gray rounded-lg shadow-lg border border-gray-700;
+}
+
+.f1-button {
+  @apply bg-f1-red hover:bg-red-700 text-white font-semibold py-2 px-4 rounded transition duration-200;
+}
+
+.f1-input {
+  @apply bg-f1-dark border border-gray-600 rounded px-3 py-2 text-white focus:outline-none focus:border-f1-red;
+}
+
+/* Chart styling */
+.chart-container {
+  background: rgba(56, 56, 63, 0.5);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2d2d35;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #5a5a63;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6a6a73;
+}
