@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { getAllDrivers, YEARS, Driver } from '../constants/drivers';
+import { getAllDrivers, getDriversForYear, YEARS, Driver } from '../constants/drivers';
 
 interface DriverPerformance {
   overall_metrics: {
@@ -50,6 +50,28 @@ const DriverAnalytics: React.FC = () => {
   const [activeTab, setActiveTab] = useState('individual');
 
   const drivers = getAllDrivers();
+  
+  // Filter drivers for the selected year
+  const availableDrivers = getDriversForYear(selectedYear);
+  
+  // Ensure selected driver is valid for the current year
+  useEffect(() => {
+    if (!availableDrivers.find(d => d.code === selectedDriver)) {
+      if (availableDrivers.length > 0) {
+        setSelectedDriver(availableDrivers[0].code);
+      }
+    }
+  }, [selectedYear, availableDrivers, selectedDriver]);
+  
+  // Filter comparison drivers to only include those valid for the selected year
+  useEffect(() => {
+    const validDrivers = comparisonDrivers.filter(driver => 
+      availableDrivers.find(d => d.code === driver)
+    );
+    if (validDrivers.length !== comparisonDrivers.length) {
+      setComparisonDrivers(validDrivers);
+    }
+  }, [selectedYear, availableDrivers, comparisonDrivers]);
 
   const analyzeDriver = async () => {
     try {
@@ -133,13 +155,15 @@ const DriverAnalytics: React.FC = () => {
             <h3 className="text-xl font-bold text-white mb-4">Driver Selection</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
-                <label className="block text-gray-400 text-sm mb-2">Driver</label>
+                <label className="block text-gray-400 text-sm mb-2">
+                  Driver ({availableDrivers.length} available in {selectedYear})
+                </label>
                 <select
                   value={selectedDriver}
                   onChange={(e) => setSelectedDriver(e.target.value)}
                   className="f1-input w-full"
                 >
-                  {drivers.map((driver) => (
+                  {availableDrivers.map((driver) => (
                     <option key={driver.code} value={driver.code}>
                       {driver.name} ({driver.code})
                     </option>
@@ -258,9 +282,11 @@ const DriverAnalytics: React.FC = () => {
             <h3 className="text-xl font-bold text-white mb-4">Driver Comparison</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
-                <label className="block text-gray-400 text-sm mb-2">Drivers to Compare</label>
+                <label className="block text-gray-400 text-sm mb-2">
+                  Drivers to Compare ({availableDrivers.length} available in {selectedYear})
+                </label>
                 <div className="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto">
-                  {drivers.slice(0, 20).map((driver) => (
+                  {availableDrivers.slice(0, 20).map((driver) => (
                     <label key={driver.code} className="flex items-center space-x-2">
                       <input
                         type="checkbox"

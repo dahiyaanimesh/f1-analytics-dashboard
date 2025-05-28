@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { getAllDrivers, YEARS } from '../constants/drivers';
+import { getAllDrivers, getDriversForYear, YEARS } from '../constants/drivers';
 
 interface StrategyResult {
   optimal_strategy: {
@@ -29,12 +29,48 @@ interface StrategyResult {
   available_compounds: string[];
 }
 
+interface RaceOption {
+  round: number;
+  name: string;
+  circuit: string;
+  date: string;
+}
+
 const StrategyOptimization: React.FC = () => {
   const [year, setYear] = useState(2025);
   const [round, setRound] = useState(1);
   const [driver, setDriver] = useState('VER');
+  const [races, setRaces] = useState<RaceOption[]>([]);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<StrategyResult | null>(null);
+
+  // Filter drivers for the selected year
+  const availableDrivers = getDriversForYear(year);
+  
+  // Ensure selected driver is valid for the current year
+  useEffect(() => {
+    if (!availableDrivers.find(d => d.code === driver)) {
+      if (availableDrivers.length > 0) {
+        setDriver(availableDrivers[0].code);
+      }
+    }
+  }, [year, availableDrivers, driver]);
+
+  // Fetch races when year changes
+  useEffect(() => {
+    fetchRaces();
+  }, [year]);
+
+  const fetchRaces = async () => {
+    try {
+      const response = await axios.get(`http://localhost:5000/api/races?year=${year}`);
+      if (response.data.success) {
+        setRaces(response.data.data);
+      }
+    } catch (error) {
+      console.error('Error fetching races:', error);
+    }
+  };
 
   const optimizeStrategy = async () => {
     try {
@@ -106,13 +142,15 @@ const StrategyOptimization: React.FC = () => {
             </select>
           </div>
           <div>
-            <label className="block text-gray-400 text-sm mb-2">Driver</label>
+            <label className="block text-gray-400 text-sm mb-2">
+              Driver ({availableDrivers.length} available in {year})
+            </label>
             <select
               value={driver}
               onChange={(e) => setDriver(e.target.value)}
               className="f1-input w-full"
             >
-              {getAllDrivers().map((driver) => (
+              {availableDrivers.map((driver) => (
                 <option key={driver.code} value={driver.code}>
                   {driver.name} ({driver.code})
                 </option>
