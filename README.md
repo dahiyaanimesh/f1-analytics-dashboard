@@ -1,244 +1,233 @@
 # 🏎️ F1 Analytics Dashboard
 
-A comprehensive Formula 1 analytics platform that provides advanced race insights, driver performance analysis, strategy optimization, and AI-powered race predictions. Built with React, TypeScript, and Python using real F1 data from the FastF1 library.
-
-![F1 Analytics Dashboard](https://img.shields.io/badge/F1-Analytics%20Dashboard-red?style=for-the-badge&logo=formula1)
-![Python](https://img.shields.io/badge/Python-3.8+-blue?style=for-the-badge&logo=python)
-![React](https://img.shields.io/badge/React-18+-61DAFB?style=for-the-badge&logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-4.9+-blue?style=for-the-badge&logo=typescript)
+A comprehensive Formula 1 analytics platform featuring race predictions, strategy optimization, driver performance analysis, and championship standings for seasons 2018-2025.
 
 ## ✨ Features
 
-### 🏁 **Dashboard Overview**
-- **Season Statistics**: Live championship standings and race calendar
-- **Driver & Constructor Championships**: Real-time points tracking
-- **Race Results**: Comprehensive race outcome analysis
-- **Season Coverage**: 2018-2025 seasons supported
-
-### 🏃‍♂️ **Driver Analytics**
-- **Individual Performance Analysis**: Detailed driver metrics and skill ratings
-- **Multi-Driver Comparison**: Side-by-side performance comparison
-- **Skill Ratings**: Consistency, speed, qualifying performance, race craft, wet weather, and overtaking
-- **Race Results Tracking**: Grid positions, finishing positions, and points progression
-- **Season-Specific Filtering**: Drivers automatically filtered by active seasons
-
-### 🎯 **Strategy Optimization**
-- **Pit Stop Strategy Analysis**: Optimal vs actual strategy comparison
-- **Tire Performance Modeling**: Realistic compound degradation patterns
-- **Driver-Specific Characteristics**: Personalized tire management and pace modeling
-- **Team-Based Analytics**: Car-specific tire performance factors
-- **Track-Type Adaptation**: Strategy varies by track characteristics
-- **Time Savings Calculation**: Quantified strategic improvements
-
-### 🔮 **Race Prediction**
-- **AI-Powered Predictions**: Machine learning race outcome forecasts
-- **Winner Probability**: Statistical likelihood of race winners
-- **Podium Predictions**: Top 8 finish probabilities
-- **Points Scoring Chances**: Top 10 finish likelihood analysis
-- **Historical Data Training**: Models trained on extensive F1 historical data
-
-## 🛠️ Technology Stack
-
-### **Frontend**
-- **React 19** with TypeScript
-- **Tailwind CSS** for styling
-- **Axios** for API communication
-- **Custom F1-themed UI components**
-
-### **Backend**
-- **Python 3.8+** with Flask
-- **FastF1** library for official F1 data
-- **Pandas & NumPy** for data processing
-- **Scikit-learn & XGBoost** for ML predictions
-- **Plotly** for data visualization
-- **SciPy** for optimization algorithms
+- **📊 Dashboard Overview**: Championship standings, race calendar, and key statistics
+- **⚡ Strategy Optimization**: AI-powered pit stop strategy analysis
+- **🏎️ Driver Analytics**: Individual and comparative driver performance analysis  
+- **🎯 Race Predictions**: ML-powered race outcome forecasting
+- **🏆 Multi-Season Support**: Complete data for 2018-2025 seasons
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- **Python 3.8+**
-- **Node.js 16+**
-- **npm or yarn**
 
-### 1. Clone the Repository
+- **Python 3.8+** with pip
+- **Node.js 16+** with npm
+- **Git** (for cloning)
+
+### Installation & Setup
+
+1. **Clone and enter the project directory:**
+   ```bash
+   git clone <repository-url>
+   cd F1
+   ```
+
+2. **Install Python dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Install frontend dependencies:**
+   ```bash
+   cd frontend
+   npm install
+   cd ..
+   ```
+
+### Running the Application
+
+#### Option 1: Automatic Startup (Recommended)
+Run the complete dashboard with one command:
 ```bash
-git clone <repository-url>
-cd f1-analytics-dashboard
-```
-
-### 2. Backend Setup
-```bash
-# Install Python dependencies
-pip install -r requirements.txt
-
-# Start the Flask backend
 python start_dashboard.py
 ```
-The backend will be available at `http://localhost:5000`
 
-### 3. Frontend Setup
+#### Option 2: Manual Startup (If automatic fails)
+
+**Terminal 1 - Backend API:**
 ```bash
-# Navigate to frontend directory
+python start_backend.py
+```
+
+**Terminal 2 - Frontend Dashboard:**
+```bash
 cd frontend
-
-# Install dependencies
-npm install
-
-# Start the development server
 npm start
 ```
-The frontend will be available at `http://localhost:3000`
 
-## 📁 Project Structure
+### Access the Application
 
+- **🎯 Dashboard**: http://localhost:3000
+- **🔧 API Server**: http://localhost:5000
+
+## 📋 API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/health` | GET | Health check |
+| `/api/races?year=2025` | GET | Race calendar |
+| `/api/strategy-optimization` | POST | Strategy analysis |
+| `/api/driver-performance/{driver}` | GET | Driver analytics |
+| `/api/driver-comparison` | POST | Multi-driver comparison |
+| `/api/predict-race` | POST | Race predictions |
+| `/api/season-standings/{year}` | GET | Championship standings |
+
+## 🎮 Usage Guide
+
+### Dashboard
+- View championship standings for drivers and constructors
+- Browse race calendar with results status
+- See key statistics and metrics
+
+### Strategy Optimization
+1. Select year, race round, and driver
+2. Click "Optimize Strategy" 
+3. View optimal vs actual pit stop strategies
+4. Analyze potential time savings
+
+### Driver Analytics
+**Individual Analysis:**
+- Select driver and season
+- View performance metrics and skill ratings
+- Review race-by-race results
+
+**Driver Comparison:**
+- Select multiple drivers to compare
+- View side-by-side skill analysis
+- Compare performance metrics
+
+### Race Predictions
+1. Choose season and race
+2. Generate ML-powered predictions
+3. View winner, podium, and points predictions
+4. Analyze probability distributions
+
+## 🛠️ Technical Architecture
+
+### Backend (Python/Flask)
+- **FastF1**: Official F1 data processing
+- **Flask**: REST API server
+- **Pandas/NumPy**: Data analysis
+- **Scikit-learn**: Machine learning models
+
+### Frontend (React/TypeScript)
+- **React 19**: Modern UI framework
+- **TypeScript**: Type-safe development
+- **Tailwind CSS**: Styling framework
+- **Axios**: API communication
+
+### Key Components
+- `app.py`: Main Flask API server
+- `data_processor.py`: F1 data handling with 2025 calendar
+- `strategy_optimizer.py`: Pit stop strategy algorithms
+- `driver_analyzer.py`: Driver performance analysis
+- `race_predictor.py`: ML prediction models
+
+## 🎨 Features Breakdown
+
+### Strategy Optimization Algorithm
+- Track-specific tire degradation modeling
+- Driver skill factor adjustments
+- Team car performance considerations
+- Realistic compound performance gaps
+- Multi-stop strategy evaluation
+
+### Driver Analytics
+- Skill ratings: consistency, speed, qualifying, race craft, wet weather, overtaking
+- Mock race generation based on driver profiles
+- Position gain/loss tracking
+- Q3 appearance statistics
+
+### Race Predictions
+- Track characteristic adjustments
+- Team-specific performance modifiers
+- Driver weight calculations
+- Probability normalization with variance
+
+## 🗂️ Data Coverage
+
+### Seasons: 2018-2025
+- **2025**: Complete projected calendar (24 races)
+- **2018-2024**: Historical data support
+- **Drivers**: 40+ drivers across all seasons
+- **Teams**: All constructor data
+
+### 2025 Season Details
+- 24-race calendar from Australia to Abu Dhabi
+- Updated driver lineups and team changes
+- Lewis Hamilton to Ferrari, Sergio Pérez departure
+- New rookies and driver market changes
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+**Frontend won't start:**
+```bash
+cd frontend
+npm install react-scripts
+npm start
 ```
-F1/
-├── 📁 frontend/                  # React TypeScript frontend
-│   ├── 📁 public/               # Static assets
-│   │   ├── 📁 components/       # React components
-│   │   │   ├── Dashboard.tsx    # Main dashboard
-│   │   │   ├── DriverAnalytics.tsx
-│   │   │   ├── StrategyOptimization.tsx
-│   │   │   ├── RacePrediction.tsx
-│   │   │   ├── Header.tsx
-│   │   │   └── Sidebar.tsx
-│   │   ├── 📁 constants/        # Shared constants
-│   │   │   └── drivers.ts       # Driver database (2018-2025)
-│   │   └── 📁 styles/          # Tailwind CSS
-│   └── package.json
-├── 📁 cache/                    # FastF1 data cache
-│   ├── 📁 2021/                # Historical season data
-│   ├── 📁 2023/
-│   ├── 📁 2024/
-│   └── 📁 2025/
-├── app.py                       # Flask API endpoints
-├── data_processor.py            # F1 data processing
-├── driver_analyzer.py           # Driver performance analysis
-├── race_predictor.py            # ML race predictions
-├── strategy_optimizer.py        # Pit stop optimization
-├── start_dashboard.py           # Application launcher
-├── requirements.txt             # Python dependencies
-└── README.md
+
+**Backend import errors:**
+```bash
+pip install -r requirements.txt
 ```
+
+**Port conflicts:**
+- Backend uses port 5000
+- Frontend uses port 3000
+- Stop conflicting services if needed
+
+**FastF1 cache issues:**
+```bash
+# Clear cache directory if needed
+rm -rf cache/
+```
+
+### Development Mode
+
+Both services run in development mode with:
+- **Backend**: Auto-reload on code changes
+- **Frontend**: Hot module replacement
+- **Debug**: Detailed error logging
+
+## 📊 Data Sources
+
+- **FastF1**: Official Formula 1 timing and telemetry data
+- **Custom Models**: Driver skill ratings and track characteristics
+- **Projected Data**: 2025 season calendar and mock standings
+- **Historical Data**: 2018-2024 race results and statistics
 
 ## 🔧 Configuration
 
-### **Driver Database**
-The system includes a comprehensive driver database covering 2018-2025:
-- **47 drivers total** with season-specific filtering
-- **Current 2025 grid** (21 active drivers)
-- **Historical drivers** (26 former drivers)
-- **Team associations** and season availability
+### Environment Variables
+- `FLASK_ENV=development` (auto-set)
+- `REACT_APP_API_URL=http://localhost:5000` (default)
 
-### **Season Coverage**
-- **2018-2024**: Historical data via FastF1
-- **2025**: Projected season with realistic race calendar
-- **Automatic data caching** for improved performance
+### Cache Management
+FastF1 data is cached in `cache/` directory for performance. Cache automatically manages downloads and storage.
 
-### **API Endpoints**
-```
-GET  /api/health                 # Health check
-GET  /api/races?year=2025        # Race calendar
-GET  /api/race-data/{year}/{round} # Detailed race data
-POST /api/strategy-optimization  # Strategy analysis
-GET  /api/driver-performance/{driver} # Driver metrics
-POST /api/driver-comparison      # Multi-driver analysis
-POST /api/predict-race          # Race predictions
-GET  /api/season-standings/{year} # Championship standings
-```
+## 🏁 Project Status
 
-## 📊 Analytics Features
+**Current Status**: ✅ Fully Functional
+- All backend services restored and working
+- Complete frontend React application
+- Full 2018-2025 season support
+- ML-powered predictions operational
+- Strategy optimization algorithms active
 
-### **Strategy Optimization Algorithm**
-- **Track-Specific Modeling**: Different tire degradation by circuit type
-- **Driver Characteristics**: Individual tire management skills
-- **Team Car Performance**: Vehicle-specific tire friendliness
-- **Weather Adaptation**: Intermediate and wet tire strategies
-- **Realistic Pit Times**: Team-specific pit stop efficiency
-
-### **Race Prediction Models**
-- **Historical Pattern Analysis**: Multi-season training data
-- **Driver Form Weighting**: Recent performance trends
-- **Track-Specific Factors**: Circuit characteristics impact
-- **Team Performance Trends**: Constructor competitiveness
-- **Qualifying Impact**: Grid position influence on race outcome
-
-### **Driver Analytics Metrics**
-- **Consistency Rating**: Performance variance analysis
-- **Speed Index**: Raw pace assessment
-- **Qualifying Performance**: Grid position optimization
-- **Race Craft**: Overtaking and defensive capabilities
-- **Wet Weather Skill**: Rain performance rating
-- **Position Gain/Loss Tracking**: Race-day progression analysis
-
-## 🎨 UI/UX Features
-
-### **F1-Themed Design**
-- **Dark Theme**: Professional Formula 1 aesthetic
-- **Responsive Layout**: Mobile and desktop optimized
-- **Interactive Components**: Dynamic data visualization
-- **Real-time Updates**: Live data integration
-- **Accessibility**: Screen reader compatible
-
-### **User Experience**
-- **Season-Specific Filtering**: Automatic driver/race filtering
-- **Smart Defaults**: Intelligent form pre-population
-- **Error Handling**: Graceful fallbacks for missing data
-- **Loading States**: Professional loading indicators
-- **Data Validation**: Input sanitization and validation
-
-## 🔮 Future Enhancements
-
-### **Planned Features**
-- [ ] **Live Race Tracking**: Real-time race monitoring
-- [ ] **Weather Integration**: Meteorological data impact
-- [ ] **Telemetry Analysis**: Car performance deep-dive
-- [ ] **Fantasy F1 Integration**: Team management features
-- [ ] **Mobile App**: Native iOS/Android applications
-- [ ] **Social Features**: Community predictions and discussions
-
-### **Technical Roadmap**
-- [ ] **Database Integration**: PostgreSQL/MongoDB for data persistence
-- [ ] **Authentication System**: User accounts and preferences
-- [ ] **API Rate Limiting**: Enhanced backend performance
-- [ ] **Docker Containerization**: Simplified deployment
-- [ ] **CI/CD Pipeline**: Automated testing and deployment
-- [ ] **Performance Monitoring**: Application analytics
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
-
-### **Development Setup**
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### **Code Standards**
-- **TypeScript**: Strict type checking enabled
-- **ESLint**: Code quality enforcement
-- **Prettier**: Consistent code formatting
-- **React Hooks**: Proper dependency management
-- **Python PEP 8**: Style guide compliance
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **FastF1 Library**: Official F1 data access
-- **Formula 1**: Inspiration and data source
-- **React Community**: Framework and ecosystem
-- **Python Data Science**: Analytics libraries
-- **Tailwind CSS**: UI framework
+**Recent Updates**:
+- Restored complete backend after file loss
+- Updated to 2025 season as default
+- Enhanced strategy optimization algorithms
+- Improved driver filtering and validation
+- Added comprehensive error handling
 
 ---
 
-**Built with ❤️ for Formula 1 fans and data enthusiasts**
-
-[![GitHub stars](https://img.shields.io/github/stars/dahiyaanimesh/f1-analytics-dashboard?style=social)](https://github.com/dahiyaanimesh/f1-analytics-dashboard/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/dahiyaanimesh/f1-analytics-dashboard?style=social)](https://github.com/dahiyaanimesh/f1-analytics-dashboard/network/members)
-[![GitHub issues](https://img.shields.io/github/issues/dahiyaanimesh/f1-analytics-dashboard)](https://github.com/dahiyaanimesh/f1-analytics-dashboard/issues) 
+**🏆 Ready to race! Fire up your engines and dive into the world of Formula 1 analytics!**
