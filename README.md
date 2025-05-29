@@ -15,8 +15,6 @@ A comprehensive Formula 1 analytics platform with ML-powered race predictions, s
 ![F1 Analytics Dashboard](https://github.com/dahiyaanimesh/f1-analytics-dashboard/blob/master/frontend/public/home.png)
 *Main dashboard showing championship standings, recent race results, and quick analytics overview*
 
-> **Note**: Screenshot will be added once the application is fully deployed and tested.
-
 ## 🚀 Quick Start
 
 ### Automated Setup (Recommended)
