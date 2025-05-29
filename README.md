@@ -10,6 +10,13 @@ A comprehensive Formula 1 analytics platform with ML-powered race predictions, s
 - **🏆 Championship Data**: Real-time standings and historical data (2018-2025)
 - **🎨 Modern UI**: React/TypeScript frontend with F1-themed design
 
+## 📸 Dashboard Preview
+
+![F1 Analytics Dashboard](screenshots/dashboard-home.png)
+*Main dashboard showing championship standings, recent race results, and quick analytics overview*
+
+> **Note**: Screenshot will be added once the application is fully deployed and tested.
+
 ## 🚀 Quick Start
 
 ### Automated Setup (Recommended)
